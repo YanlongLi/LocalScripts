@@ -4,8 +4,10 @@ export LU_MODEL_QUALIFIER_PATH="\\\\suzhost-23\\users\\jiangazh\\LUTools\\Carina
 export LU_MLGTOOL_PATH="$LU_MODEL_QUALIFIER_PATH\\Tools\\MlgTools"
 export LU_QCSQUERYLABEL_PATH="$LU_MODEL_QUALIFIER_PATH\\Tools\\QCSQueryLabel"
 
-export LU_BASE='\\SUZHOST-23\Threshold'
-export LU_MAPPEDBASE='/Threshold'
+# export LU_BASE='\\SUZHOST-23\Threshold'
+# export LU_MAPPEDBASE='/Threshold'
+export LU_BASE='\\YANLL-WORK'
+export LU_MAPPEDBASE='/d/Data'
 
 LU_UnixPath2NetPath() {
   local path=$1

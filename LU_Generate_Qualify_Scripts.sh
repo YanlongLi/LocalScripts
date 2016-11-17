@@ -7,11 +7,8 @@ fi
 
 source ~/.local/bin/LU_SCRIPTS/LU_generate_config.sh
 
-LU_BASE='\\YANLL-WORK'
-LU_MAPPEDBASE='/d/Data'
-
-echo $LU_BASE
-echo $LU_MAPPEDBASE
+# LU_BASE='\\YANLL-WORK'
+# LU_MAPPEDBASE='/d/Data'
 
 tofile=`realpath $1`
 locale=$2
