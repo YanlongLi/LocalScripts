@@ -1,8 +1,12 @@
 #!/usr/bin/bash
 
-export LU_MODEL_QUALIFIER_PATH="\\\\suzhost-23\\users\\jiangazh\\LUTools\\CarinaModelQualifier"
-export LU_MLGTOOL_PATH="$LU_MODEL_QUALIFIER_PATH\\Tools\\MlgTools"
-export LU_QCSQUERYLABEL_PATH="$LU_MODEL_QUALIFIER_PATH\\Tools\\QCSQueryLabel"
+# export LU_MODEL_QUALIFIER_PATH="\\\\suzhost-23\\users\\jiangazh\\LUTools\\CarinaModelQualifier"
+export LU_MODEL_QUALIFIER_PATH='\\jianlij-work\Tools\ModelQualifier'
+export LU_TOOL_PATH="\\\\suzhost-23\\users\\jiangazh\\LUTools\\CarinaModelQualifier"
+
+export LU_MLGTOOL_PATH="$LU_TOOL_PATH\\Tools\\MlgTools"
+export LU_QCSQUERYLABEL_PATH="$LU_TOOL_PATH\\Tools\\QCSQueryLabel"
+export LU_SMEVAL_PATH="$LU_TOOL_PATH\\Tools\\smeval"
 
 # export LU_BASE='\\SUZHOST-23\Threshold'
 # export LU_MAPPEDBASE='/Threshold'
@@ -10,7 +14,7 @@ export LU_BASE='\\YANLL-WORK'
 export LU_MAPPEDBASE='/d/Data'
 
 LU_UnixPath2NetPath() {
-  local path=$1
+  local path=$(realpath -m $1)
   echo "$path" | sed -e "s/$(echo $LU_MAPPEDBASE | sed -e 's_\/_\\\/_g')/$(echo $LU_BASE | sed -e 's/\\/\\\\/g')/" -e 's/\//\\/g'
 }
 
@@ -28,12 +32,13 @@ GenerateQualifyXML() {
   local testfile=$4
   local modeldir=$5
   local clientid=$6
+  local variant=${7-"Temp"}
   #
 cat > $tofile <<EOL
 <?xml version="1.0" encoding="utf-8"?>
 <QualifierConfig>
   <Product>Threshold</Product>
-  <LocalDirectory>$outdir\\out</LocalDirectory>
+  <LocalDirectory>$outdir</LocalDirectory>
   <Locale>${locale:0:2}-${locale:(-2)}</Locale>
   <Data>
     <File path="$testfile" type="test" />
@@ -42,6 +47,7 @@ cat > $tofile <<EOL
     <DecoderType>Cortana</DecoderType>
     <ModelDir>$modeldir</ModelDir>
     <ClientId>$clientid</ClientId>
+    <Variant>$variant</Variant>
   </Model>
   <Tool>
     <ExperimentType>OfflineTool</ExperimentType>
@@ -49,7 +55,7 @@ cat > $tofile <<EOL
     <QCSQueryLabelAEther>f298e0f8-d2d0-4d0c-88ec-69bf26ec792e</QCSQueryLabelAEther>
     <QCSEvaluatorAEther>7b2b651a-55ab-471a-89e2-57b77096f844</QCSEvaluatorAEther>
     <QCSQueryLabel>$LU_QCSQUERYLABEL_PATH</QCSQueryLabel>
-    <QCSEvaluator>$LU_MODEL_QUALIFIER_PATH\\Tools\\smeval</QCSEvaluator>
+    <QCSEvaluator>$LU_SMEVAL_PATH</QCSEvaluator>
   </Tool>
 </QualifierConfig>
 EOL
@@ -60,7 +66,7 @@ GenerateQualifyBat() {
   config=$2
   #
 cat > $tofile <<EOL
-$LU_MODEL_QUALIFIER_PATH\\bin\\LUModelQualifier.exe -c $config
+$LU_MODEL_QUALIFIER_PATH\\LUModelQualifier.exe -c $config
 PAUSE
 EOL
   #

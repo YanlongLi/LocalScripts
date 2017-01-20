@@ -16,12 +16,12 @@ modeldir=`LU_UnixPath2NetPath $(realpath $2)`
 variant=$3
 if [ $# -eq 7 ]; then
   clientid=$4
-  output=$5
+  output=`LU_UnixPath2NetPath $5`
   testfile=`LU_UnixPath2NetPath $(realpath $6)`
   domain=$7
 elif [ $# -eq 8 ]; then
   clientid=Microsoft_Threshold_Shell_1_$4_$5
-  output=$6
+  output=`LU_UnixPath2NetPath $6`
   testfile=`LU_UnixPath2NetPath $(realpath $7)`
   domain=$8
 fi
