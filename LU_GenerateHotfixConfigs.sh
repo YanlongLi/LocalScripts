@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 source ~/.local/bin/LU_SCRIPTS/LU_generate_config.sh
 

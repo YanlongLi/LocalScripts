@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 if [ $# -lt 3 ]; then
   echo "$0 file from to"

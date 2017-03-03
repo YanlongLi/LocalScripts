@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 if [ $# -lt 7 ]; then
   echo "Usage $0 tofile modeldir variant clientid output testfile domain"

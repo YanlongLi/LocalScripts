@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # export LU_MODEL_QUALIFIER_PATH="\\\\suzhost-23\\users\\jiangazh\\LUTools\\CarinaModelQualifier"
 export LU_MODEL_QUALIFIER_PATH='\\jianlij-work\Tools\ModelQualifier'

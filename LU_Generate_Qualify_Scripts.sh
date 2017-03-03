@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 if [ $# -lt 5 ]; then
   echo "Usage $0 tofile locale modeldir clientid variant testfile outdir"
